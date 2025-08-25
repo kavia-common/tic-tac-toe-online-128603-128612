@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
+/* Theme variables (light, modern) */
 :root {
-  --color-primary: #000000;
-  --color-secondary: #FFFFFF;
-  --color-accent: #3B82F6;
-  --color-background: #FFFFFF;
+  --color-primary: #1976d2;   /* requested primary */
+  --color-secondary: #424242; /* requested secondary */
+  --color-accent: #ffb300;    /* requested accent */
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-text: #1f2937;     /* neutral modern text */
+  --radius: 14px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+* { box-sizing: border-box; padding: 0; margin: 0; }
 
-html,
-body {
+html, body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: var(--color-background);
-  color: var(--color-primary);
+  background: radial-gradient(1200px 800px at 50% -10%, #eaf3ff 0%, rgba(234,243,255,0) 60%),
+              var(--color-bg);
+  color: var(--color-text);
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Subtle card */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+.btn-primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--color-primary) 35%, transparent);
+  color: var(--color-primary);
+}
+.btn-outline:hover {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+/* Select */
+.select {
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Board styles */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(80px, 1fr));
+  grid-auto-rows: minmax(80px, 1fr);
+  gap: 10px;
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  background: #f7fafc;
+  border: 1px solid #e5e7eb;
+  display: grid;
+  place-items: center;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 800;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.cell:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+.cell.X { color: var(--color-primary); }
+.cell.O { color: var(--color-accent); }
+.cell.disabled { cursor: not-allowed; opacity: 0.6; }

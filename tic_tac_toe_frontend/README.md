@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tic Tac Toe Frontend (Next.js)
+
+A modern, responsive Tic Tac Toe game built with Next.js.
+
+Features:
+- Interactive 3x3 game board
+- Player vs Player and Player vs Computer modes
+- Game state display (turn, win, loss, draw)
+- Scoreboard (X, O, Draws)
+- Restart round (alternates starter) and Reset all
+- Light, modern styling with theme colors:
+  - Primary: `#1976d2`
+  - Secondary: `#424242`
+  - Accent: `#ffb300`
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser to play.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` - Start the Next.js development server
+- `npm run build` - Build the app
+- `npm start` - Start the production server (after build)
+- `npm run lint` - Lint the project
 
-## Learn More
+## Build and Run (Production)
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is configured for static export (see `next.config.ts`).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Gameplay Notes
 
-## Deploy on Vercel
+- In Player vs Computer mode, the AI uses a lightweight strategy:
+  - Try to win → Block opponent → Take center → Take a corner → Take an edge.
+- Restart alternates the starting player for fairness across rounds.
+- Reset clears both the board and the cumulative scores.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 15 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS (v4) for base utilities
+- Custom CSS variables for theme
+
+## Project Structure
+
+- `src/app/page.tsx` - Main game UI
+- `src/hooks/useTicTacToe.ts` - Game logic and state management hook
+- `src/app/globals.css` - Global styles and theme variables
+- `public/favicon.ico` - Favicon (placeholder, replace as needed)
+
+## Theming
+
+This UI uses a light, modern theme:
+- Primary: `#1976d2`
+- Secondary: `#424242`
+- Accent: `#ffb300`
+
+You can adjust theme colors in `src/app/globals.css`.
+
+## License
+
+This project is provided as-is for demonstration and learning purposes.
